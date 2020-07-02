@@ -6,9 +6,11 @@ import {
   TextButton,
 } from "@airtable/blocks/ui";
 import React from "react";
+import { Provider } from "react-redux";
 import { viewport } from "@airtable/blocks";
-import {AppBar} from "./components/AppBar";
-import {SlideDetails} from "./screens/SlideDetails";
+import { AppBar } from "./components/AppBar";
+import { SlideDetails } from "./screens/SlideDetails";
+import configureStore from "./store";
 
 // Determines the maximum size of the block in fullscreen mode.
 viewport.addMaxFullscreenSize({
@@ -21,10 +23,12 @@ viewport.addMinSize({
   width: 400,
 });
 
+const store = configureStore();
+
 function App() {
   // YOUR CODE GOES HERE
   return (
-    <>
+    <Provider store={store}>
       <Box
         position="absolute"
         top={0}
@@ -36,10 +40,10 @@ function App() {
         alignItems="center"
         justifyContent="space-between"
       >
-    <AppBar />
-        <SlideDetails/>
+        <AppBar />
+        <SlideDetails />
       </Box>
-    </>
+    </Provider>
   );
 }
 
