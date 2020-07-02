@@ -5,5 +5,5 @@
  * Copyright (c) 2020. Mikhail Lazarev
  *
  */
-export const STORIES_PREFIX = 'STORIES@@';
-export const endpoint = '/api/stories/';
+export const BUNDLES_PREFIX = 'BUNDLES@@';
+export const endpoint = '/api/bundles/';

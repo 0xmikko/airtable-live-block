@@ -6,28 +6,23 @@
  *
  */
 
-import { endpoint, STORIES_PREFIX } from "./";
-
+import { endpoint, BUNDLES_PREFIX } from "./";
 import {
   createDataLoaderCreateUpdateDataAction,
   createDataLoaderDetailActions,
-  createDataLoaderListActions,
-    createDataLoaderUploadFileAction,
+  createDataLoaderListActions
 } from "../dataloader/actions";
-import { StoryPage } from "../../core/storyPage";
-import {createAction} from "redux-api-middleware";
+import {Bundle} from "../../core/bundle";
 
-export const getList = createDataLoaderListActions(endpoint, STORIES_PREFIX);
+export const getList = createDataLoaderListActions(endpoint, BUNDLES_PREFIX);
 
 export const getDetails = createDataLoaderDetailActions(
   endpoint + "editor/:id/",
-  STORIES_PREFIX
+  BUNDLES_PREFIX
 );
 
 export const createUpdateDetails = createDataLoaderCreateUpdateDataAction<
-  StoryPage
->(endpoint, endpoint + ":id/", STORIES_PREFIX);
+  Bundle
+>(endpoint, endpoint + ":id/", BUNDLES_PREFIX);
 
-
-export const uploadPicture = createDataLoaderUploadFileAction(endpoint + 'upload/:id/', STORIES_PREFIX);
 

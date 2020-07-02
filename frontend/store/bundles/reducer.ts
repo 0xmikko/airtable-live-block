@@ -7,7 +7,7 @@
  */
 
 import { createDataLoaderReducer } from "../dataloader/reducer";
-import { StoryPage } from "../../core/storyPage";
-import { STORIES_PREFIX } from "./";
+import { BUNDLES_PREFIX } from "./";
+import {Bundle} from "../../core/bundle";
 
-export default createDataLoaderReducer<StoryPage>(STORIES_PREFIX);
+export default createDataLoaderReducer<Bundle>(BUNDLES_PREFIX);

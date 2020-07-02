@@ -9,8 +9,9 @@ import React from "react";
 import { Provider } from "react-redux";
 import { viewport } from "@airtable/blocks";
 import { AppBar } from "./components/AppBar";
-import { SlideDetails } from "./screens/SlideDetails";
+import { SlideDetailsScreen } from "./screens/SlideDetailsScreen";
 import configureStore from "./store";
+import {Router} from "./screens/Router";
 
 // Determines the maximum size of the block in fullscreen mode.
 viewport.addMaxFullscreenSize({
@@ -38,10 +39,10 @@ function App() {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        justifyContent="space-between"
+        justifyContent="flex-start"
       >
         <AppBar />
-        <SlideDetails />
+        <Router />
       </Box>
     </Provider>
   );

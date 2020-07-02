@@ -1,41 +1,48 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Box, Button, Heading, useBase, useRecords } from "@airtable/blocks/ui";
 import { SlideDetailsView } from "../containers/SlideDetailsView";
-import { AttachmentImageViewer } from "../components/AttachmentImageViewer";
+import actions from "../store/actions";
+import {Item} from "../core/item";
+import {ImageGallery} from "../components/ImageGallery";
 
-export interface SlideDetailsProps {}
-export const SlideDetails: React.FC<SlideDetailsProps> = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+export interface SlideDetailsProps {
+  tableId?: string;
+  id: string;
+}
+export const SlideDetailsScreen: React.FC<SlideDetailsProps> = ({ tableId, id }) => {
   const base = useBase();
+  const dispatch = useDispatch();
   const table = base.getTableByNameIfExists("Table 1");
   const records = useRecords(table);
   if (records.length === 0) {
     return <div>"Nothing to show"</div>;
   }
 
+  const num = parseInt(id);
+
   const onPrev = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(currentSlide - 1);
-    }
+    dispatch(
+      actions.router.navigate({ url: "/details", id: (num - 1).toString() })
+    );
   };
 
   const onNext = () => {
-    if (currentSlide < records.length - 1) {
-      setCurrentSlide(currentSlide + 1);
-    }
+    dispatch(
+      actions.router.navigate({ url: "/details", id: (num + 1).toString() })
+    );
   };
 
-  const data = records[currentSlide];
+  const data = new Item(records[num], num);
 
   return (
     <>
       <SlideDetailsView
-        header={data.getCellValueAsString("Name")}
-        description={data.getCellValueAsString("Description")}
+        header={data.header}
+        description={data.description}
         images={
-          <AttachmentImageViewer
-            record={data}
-            attachmentField={"Attachments"}
+          <ImageGallery
+              imagesUrl={data.images}
           />
         }
       />
@@ -52,7 +59,9 @@ export const SlideDetails: React.FC<SlideDetailsProps> = () => {
         paddingBottom={"8px"}
         backgroundColor={"#8ca5ff"}
       >
-        <Heading size={"xsmall"}>{data.getCellValueAsString("Name")} [{currentSlide+1}]</Heading>
+        <Heading size={"xsmall"}>
+          {data.header} [{num + 1}]
+        </Heading>
         <Box>
           <Button onClick={onPrev} marginRight={"10px"}>
             Prev
