@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Box, Button, Heading, useBase, useRecords } from "@airtable/blocks/ui";
-import { SlideDetailsView } from "../containers/SlideDetailsView";
-import actions from "../store/actions";
-import {Item} from "../core/item";
-import {ImageGallery} from "../components/ImageGallery";
+import { SlideDetailsView } from "../../containers/SlideDetailsView";
+import actions from "../../store/actions";
+import { Item } from "../../core/item";
+import { ImageGallery } from "../../components/ImageGallery";
+import { AppBar } from "../../components/AppBar";
 
 export interface SlideDetailsProps {
   tableId?: string;
   id: string;
 }
-export const SlideDetailsScreen: React.FC<SlideDetailsProps> = ({ tableId, id }) => {
+export const SlideDetailsScreen: React.FC<SlideDetailsProps> = ({
+  tableId,
+  id,
+}) => {
   const base = useBase();
   const dispatch = useDispatch();
   const table = base.getTableByNameIfExists("Table 1");
@@ -36,15 +40,22 @@ export const SlideDetailsScreen: React.FC<SlideDetailsProps> = ({ tableId, id })
   const data = new Item(records[num], num);
 
   return (
-    <>
+    <Box
+      position="absolute"
+      top={0}
+      left={0}
+      right={0}
+      bottom={0}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="flex-start"
+    >
+      <AppBar />
       <SlideDetailsView
         header={data.header}
         description={data.description}
-        images={
-          <ImageGallery
-              imagesUrl={data.images}
-          />
-        }
+        images={<ImageGallery imagesUrl={data.images} />}
       />
       <Box
         display="flex"
@@ -69,6 +80,6 @@ export const SlideDetailsScreen: React.FC<SlideDetailsProps> = ({ tableId, id })
           <Button onClick={onNext}>Next</Button>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };

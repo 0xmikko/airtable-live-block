@@ -1,7 +1,10 @@
-import { Box, Button, Heading } from "@airtable/blocks/ui";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { Box, Button, Heading } from "@airtable/blocks/ui";
+import actions from "../store/actions";
 
 export function AppBar() {
+  const dispatch = useDispatch();
   return (
     <Box
       top={0}
@@ -22,7 +25,14 @@ export function AppBar() {
     >
       <Heading size={"xsmall"}>AirLive</Heading>
       <Box>
-        <Button marginRight={"10px"}>Settings</Button>
+        <Button
+          marginRight={"10px"}
+          onClick={() =>
+            dispatch(actions.router.navigate({ url: "/settings" }))
+          }
+        >
+          Settings
+        </Button>
         <Button>Publish</Button>
       </Box>
     </Box>
