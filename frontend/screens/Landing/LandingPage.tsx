@@ -3,9 +3,8 @@ import { NavbarPage } from "../../components/Navbar/Navbar";
 import { Block } from "../../core/block";
 import { LandingBlockFactory } from "../../components/Block/LandingBlockFactory";
 import { useBase, useRecords} from "@airtable/blocks/ui";
-import {LandingSchemaItem} from "../../containers/LandingSchemaItem";
 
-export const LandingSchema: React.FC = () => {
+export const LandingPage: React.FC = () => {
   const base = useBase();
   const table = base.getTableByNameIfExists("Schema");
 
@@ -19,7 +18,9 @@ export const LandingSchema: React.FC = () => {
 
   return (
     <div>
-      { blocks.map(block => <LandingSchemaItem data={block}  />)}
+
+      <NavbarPage data={blocks} />
+      <LandingBlockFactory data={blocks} />
     </div>
   );
 };

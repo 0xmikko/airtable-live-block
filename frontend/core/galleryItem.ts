@@ -1,9 +1,7 @@
 import Record from "@airtable/blocks/dist/types/src/models/record";
+import {AttachmentObj} from "./recordExtractor";
 
-interface AttachmentObj {
-  id: string;
-  url: string;
-}
+
 
 export class GalleryItem {
   id: string;

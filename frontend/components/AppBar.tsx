@@ -1,10 +1,23 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { Box, Button, Heading } from "@airtable/blocks/ui";
+import { useDispatch, useSelector } from "react-redux";
+import { Box, Button, Heading, SelectButtons } from "@airtable/blocks/ui";
+
 import actions from "../store/actions";
+import { RootState } from "../store";
 
 export function AppBar() {
+  const options = [
+    { value: "/", label: "Landing" },
+    { value: "/schema", label: "Schema" },
+    { value: "/list", label: "Setting" },
+    { value: "/details", label: "Publish" },
+  ];
+
   const dispatch = useDispatch();
+  const { url, id } = useSelector((state: RootState) => state.router.route);
+
+  console.log("URL", url);
+
   return (
     <Box
       top={0}
@@ -24,16 +37,16 @@ export function AppBar() {
       backgroundColor={"#8ca5ff"}
     >
       <Heading size={"xsmall"}>AirLive</Heading>
-      <Box>
-        <Button
-          marginRight={"10px"}
-          onClick={() =>
-            dispatch(actions.router.navigate({ url: "/settings" }))
+      <Box height={'auto'}>
+        <SelectButtons
+          value={url}
+          onChange={(newValue) =>
+            dispatch(actions.router.navigate({ url: newValue }))
           }
-        >
-          Settings
-        </Button>
-        <Button>Publish</Button>
+          options={options}
+          width="320px"
+          style={{height: 'auto'}}
+        />
       </Box>
     </Box>
   );

@@ -3,9 +3,10 @@ import {
   Button,
   Heading,
   initializeBlock,
+  loadCSSFromURLAsync,
   TextButton,
 } from "@airtable/blocks/ui";
-import React from "react";
+import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import { viewport } from "@airtable/blocks";
 import { AppBar } from "./components/AppBar";
@@ -27,7 +28,17 @@ viewport.addMinSize({
 const store = configureStore();
 
 function App() {
-  // YOUR CODE GOES HERE
+  useEffect(() => {
+    loadCSSFromURLAsync(
+      "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    ).then(() => console.log("Ok"));
+    loadCSSFromURLAsync(
+      "https://storage.googleapis.com/airtable-live/style.css"
+    ).then(() => console.log("Ok"));
+    loadCSSFromURLAsync(
+      "https://storage.googleapis.com/airtable-live/swiper-bundle.min.css"
+    ).then(() => console.log("Ok"));
+  }, []);
   return (
     <Provider store={store}>
       <Router />
