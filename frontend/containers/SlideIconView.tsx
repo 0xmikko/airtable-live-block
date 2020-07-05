@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch} from 'react-redux';
-import { Item } from "../core/Item";
+import { GalleryItem } from "../core/galleryItem";
 import { Box } from "@airtable/blocks/ui";
 import actions from "../store/actions";
 
 export interface SlideIconViewProps {
-  data?: Item;
+  data?: GalleryItem;
 }
 
 export const SlideIconView: React.FC<SlideIconViewProps> = ({ data }) => {

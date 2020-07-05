@@ -15,8 +15,8 @@ import { Router } from "./screens/Router";
 
 // Determines the maximum size of the block in fullscreen mode.
 viewport.addMaxFullscreenSize({
-  height: 620,
-  width: 840,
+  height: 1020,
+  width: 1400,
 });
 
 viewport.addMinSize({

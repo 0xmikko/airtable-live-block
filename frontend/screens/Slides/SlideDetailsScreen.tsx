@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Box, Button, Heading, useBase, useRecords } from "@airtable/blocks/ui";
 import { SlideDetailsView } from "../../containers/SlideDetailsView";
 import actions from "../../store/actions";
-import { Item } from "../../core/item";
+import { GalleryItem } from "../../core/galleryItem";
 import { ImageGallery } from "../../components/ImageGallery";
 import { AppBar } from "../../components/AppBar";
 
@@ -37,7 +37,7 @@ export const SlideDetailsScreen: React.FC<SlideDetailsProps> = ({
     );
   };
 
-  const data = new Item(records[num], num);
+  const data = new GalleryItem(records[num], num);
 
   return (
     <Box

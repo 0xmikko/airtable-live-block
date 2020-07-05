@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Box, Button, Heading, useBase, useRecords } from "@airtable/blocks/ui";
 import { SlidesListView } from "../../containers/SlidesListView";
-import { Item } from "../../core/item";
+import { GalleryItem } from "../../core/galleryItem";
 import {AppBar} from "../../components/AppBar";
 
 export interface SlideListProps {
@@ -17,7 +17,7 @@ export const SlideListScreen: React.FC<SlideListProps> = ({ tableId }) => {
     return <div>"Nothing to show"</div>;
   }
 
-  const data: Item[] = records.map((record, index) => new Item(record, index));
+  const data: GalleryItem[] = records.map((record, index) => new GalleryItem(record, index));
   console.log("RDDE", records, data);
 
   return  <Box

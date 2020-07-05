@@ -1,10 +1,10 @@
 import React from "react";
-import { Item } from "../core/Item";
+import { GalleryItem } from "../core/galleryItem";
 import { Box } from "@airtable/blocks/ui";
 import { SlideIconView } from "./SlideIconView";
 
 export interface SlideDetailsViewProps {
-  data: Item[];
+  data: GalleryItem[];
 }
 
 export const SlidesListView: React.FC<SlideDetailsViewProps> = ({ data }) => {

@@ -9,15 +9,24 @@
     },
     "dependencies": {
         "@airtable/blocks": "latest",
+        "@types/reactstrap": "^8.4.3",
         "@types/redux-api-middleware": "^3.2.2",
+        "@types/swiper": "^5.4.0",
+        "class-validator": "^0.12.2",
+        "feather-icons-react": "^0.4.1",
         "jwt-decode": "^2.2.0",
         "react": "^16.9.0",
+        "react-countup": "^4.3.3",
         "react-dom": "^16.9.0",
+        "react-owl-carousel": "^2.3.1",
         "react-redux": "^7.2.0",
+        "react-responsive-carousel": "^3.2.9",
+        "reactstrap": "^8.5.1",
         "redux": "^4.0.5",
         "redux-api-middleware": "^3.2.1",
         "redux-devtools-extension": "^2.13.8",
-        "redux-thunk": "^2.3.0"
+        "redux-thunk": "^2.3.0",
+        "swiper": "^6.0.0"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^3.0.2",

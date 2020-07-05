@@ -5,7 +5,7 @@ interface AttachmentObj {
   url: string;
 }
 
-export class Item {
+export class GalleryItem {
   id: string;
   index? : number;
   header?: string;
