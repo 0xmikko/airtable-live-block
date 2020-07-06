@@ -1,43 +1,39 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
-import {Hero} from "../../core/hero";
+import { Hero } from "../../core/hero";
 
 interface HeroBlockProps {
-  data: Hero
+  data: Hero;
 }
 
-export const HeroBlock: React.FC<HeroBlockProps> = ({data}) => {
-
+export const HeroBlock: React.FC<HeroBlockProps> = ({ data }) => {
   return (
       <section
-        className="hero-section-5"
-        id="home"
-        style={{ background: `url(${data.image})` }}
+          className="hero-section-2"
+          id="home"
+          style={{
+            backgroundImage: `url(${data.image})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "right",
+          }}
       >
-        <div className="bg-overlay"></div>
         <Container>
           <Row className="justify-content-center">
-            <Col lg={8}>
+            <Col lg={12}>
               <div className="hero-wrapper text-center mb-4">
-                <p className="font-16 text-uppercase text-white-50">
+                <p className="font-16 text-uppercase text-black-50 text-left" >
                   {data.subtitle}
                 </p>
-                <h1 className="hero-title text-white mb-4">
-                  {data.title}
+                <h1
+                    className="hero-title text-black mb-4 text-left"
+                    style={{ fontSize: "40pt" }}
+                >
+                  {data.title.split("\n").map(e => <>{e}<br/></>)}
                 </h1>
 
-                <p className="text-white-50">
-                  {data.desc}
-                </p>
+                <p className="text-black-50 text-left" style={{paddingBottom: '40px'}}>{data.desc.split("\n").map(e => <>{e}<br/></>)}</p>
 
-                {/*<div className="mt-4">*/}
-                {/*  <a href="#" className="btn btn-primary mt-2 mr-2">*/}
-                {/*    Get Started*/}
-                {/*  </a>*/}
-                {/*  <a href="#" className="btn btn-success mt-2 mr-2 ml-1">*/}
-                {/*    Learn more*/}
-                {/*  </a>*/}
-                {/*</div>*/}
               </div>
             </Col>
           </Row>

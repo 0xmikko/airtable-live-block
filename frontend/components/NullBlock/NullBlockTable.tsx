@@ -1,5 +1,5 @@
 import React from "react";
-import { Block, BlockTableData } from "../../core/block";
+import { BlockTableData } from "../../core/block";
 import { Col, Container, Row } from "reactstrap";
 
 interface NullBlockTableProps extends BlockTableData {

@@ -1,4 +1,4 @@
-import { Entry, Schema } from "./schema";
+import { Schema } from "./schema";
 import { FieldType, Record as ATRecord } from "@airtable/blocks/models";
 import { RecordExtractor, RecordMatcher } from "./recordExtractor";
 
@@ -38,5 +38,3 @@ export const FooterSchema: Schema = {
     displayName: "Phone number",
   },
 };
-
-

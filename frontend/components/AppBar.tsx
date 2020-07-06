@@ -11,7 +11,7 @@ export function AppBar() {
     { value: "/schema", label: "Schema" },
     // { value: "/settings", label: "Setting" },
     { value: "/publish", label: "Publish" },
-    { value: "/real", label: "Real" },
+    // { value: "/real", label: "Real" },
   ];
 
   const dispatch = useDispatch();

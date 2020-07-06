@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavbarPage } from "../../components/Navbar/Navbar";
 import { Block } from "../../core/block";
-import { LandingBlockFactoryProps } from "../../components/BlockFactory/LandingBlockFactoryProps";
 import { Button, Input, useBase, useRecords } from "@airtable/blocks/ui";
 import { PublishBlockFactory } from "../../components/BlockFactory/PublishBlockFactory";
 import { Col, Container, Row } from "reactstrap";
@@ -34,7 +32,8 @@ export const PublishScreen: React.FC = () => {
             width="80%"
             style={{marginTop: '10px', marginBottom: '10px'}}
           />
-          <Button width={'80%'} variant={'primary'} onClick={() => setStartUpload(true)}>Start upload</Button>
+          <Button width={'80%'} variant={'primary'} onClick={() => setStartUpload(true)}>Start upload</Button><br/>
+          <a href={`https://airtable.live/${bundleName}`} target={"_blank"} style={{marginTop: '10px'}}>Open landing</a>
         </Col>
       </Row>
       <Row>

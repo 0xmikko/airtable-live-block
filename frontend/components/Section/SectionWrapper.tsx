@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Container } from "reactstrap";
-import {Block, getSectionId} from "../../core/block";
+import { Block, getSectionId } from "../../core/block";
 
 export interface SectionWrapperProps {
   data: Block;

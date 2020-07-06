@@ -1646,6 +1646,13 @@ react-easy-swipe@^0.0.18:
   dependencies:
     prop-types "^15.5.8"
 
+react-feather@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/react-feather/-/react-feather-2.0.8.tgz#455baf1470f756a57e2ad6c72545444ce5925781"
+  integrity sha512-J0dCEOvOxpovHeOVj3+8mAhN3/UERTfX6rSxnV6x4E+0s+STY536jhSjRfpSvTQA0SSFjYr4KrpPfdsLmK+zZg==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-ga@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-3.1.1.tgz#3adcaa96e223d4eb530dab96b0ceac9a511d7be9"

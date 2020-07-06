@@ -1,11 +1,9 @@
 import Record from "@airtable/blocks/dist/types/src/models/record";
-import {AttachmentObj} from "./recordExtractor";
-
-
+import { AttachmentObj } from "./recordExtractor";
 
 export class GalleryItem {
   id: string;
-  index? : number;
+  index?: number;
   header?: string;
   description?: string;
   images?: string[];
@@ -34,6 +32,4 @@ export class GalleryItem {
     this.price = record.getCellValue("Price") as number;
     this.offer = record.getCellValue("Price") as number;
   }
-
-
 }

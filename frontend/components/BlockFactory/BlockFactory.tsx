@@ -1,11 +1,8 @@
-import React, { ReactElement, useEffect, useState } from "react";
-import { Block, BlockTableData, LandingsBlocks } from "../../core/block";
-import { SectionWrapper } from "../Section/SectionWrapper";
+import React, { ReactElement } from "react";
+import { Block, LandingsBlocks } from "../../core/block";
 import { useBase, useGlobalConfig, useRecords } from "@airtable/blocks/ui";
 import { Record as ATRecord } from "@airtable/blocks/models";
 import { RecordMatcher } from "../../core/recordExtractor";
-import { NullBlockTable } from "../NullBlock/NullBlockTable";
-import { LandingIncorrectBlockRenderer } from "./LandingIncorrectBlockRenderer";
 
 export interface BlockRendererProps {
   block: Block;
@@ -36,12 +33,9 @@ export const BlockFactory: React.FC<BlockLandingProps> = ({
   data,
   blockRender,
   incorrectBlockRender,
-  exportJson,
   bundleName,
   startUpload,
 }) => {
-  const renderedJSON = new Map<number, Block>();
-
   const renderedBlocks = data
     .filter((block) => LandingsBlocks[block.type] !== undefined)
     .map((block, index) => {
@@ -75,7 +69,7 @@ export const BlockFactory: React.FC<BlockLandingProps> = ({
       }
 
       const records = useRecords(table);
-      if (records === null || records === undefined || records.length===0) {
+      if (records === null || records === undefined || records.length === 0) {
         const message = `No data records was found`;
         return (
           <div key={index}>{incorrectBlockRender({ block, message })}</div>
@@ -96,12 +90,6 @@ export const BlockFactory: React.FC<BlockLandingProps> = ({
         </div>
       );
     });
-
-  useEffect(() => {
-    if (exportJson !== undefined) {
-      exportJson(JSON.stringify(renderedJSON));
-    }
-  }, [renderedJSON]);
 
   return <>{renderedBlocks}</>;
 };

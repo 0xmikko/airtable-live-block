@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import { viewport } from "@airtable/blocks";
 import configureStore from "./store";
-import { RouterAirTable } from "./screens/RouterAirTable";
+import { Router } from "./screens/Router";
 
 // Determines the maximum size of the block in fullscreen mode.
 viewport.addMaxFullscreenSize({
@@ -35,7 +35,7 @@ function App() {
   }, []);
   return (
     <Provider store={store}>
-      <RouterAirTable />
+      <Router />
     </Provider>
   );
 }

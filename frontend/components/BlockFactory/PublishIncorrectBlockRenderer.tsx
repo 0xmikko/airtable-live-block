@@ -1,6 +1,4 @@
 import React from "react";
-import { Block, BlockTableData, LandingsBlocks } from "../../core/block";
-import { SectionWrapper } from "../Section/SectionWrapper";
 import { IncorrectBlockRendererProps } from "./BlockFactory";
 import { BlockInfo } from "../BlockInfo";
 

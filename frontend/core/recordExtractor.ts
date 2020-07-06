@@ -1,4 +1,4 @@
-import { FieldType, Record as ATRecord } from "@airtable/blocks/models";
+import { Record as ATRecord } from "@airtable/blocks/models";
 
 export interface AttachmentObj {
   id: string;
@@ -17,30 +17,28 @@ export class RecordExtractor {
   constructor(record: ATRecord, matcher: RecordMatcher) {
     this._matcher = matcher;
     this._record = record;
-
-
   }
 
   public getString(key: string): string {
-    const intKey = this._matcher.fieldIds[key]
+    const intKey = this._matcher.fieldIds[key];
     if (intKey === undefined) return "Cant find key :" + key;
     return this._record.getCellValueAsString(intKey);
   }
 
   public getNumber(key: string): number {
-    const intKey = this._matcher.fieldIds[key]
+    const intKey = this._matcher.fieldIds[key];
     if (intKey === undefined) {
-      console.log("ACHTUNG", this._record, this._matcher)
-      console.log("Invalid key: ", key)
+      console.log("ACHTUNG", this._record, this._matcher);
+      console.log("Invalid key: ", key);
       return 0;
     }
     return this._record.getCellValue(intKey) as number;
   }
 
   public getAttachmentUrls(key: string): string[] {
-    const intKey = this._matcher.fieldIds[key]
+    const intKey = this._matcher.fieldIds[key];
     if (intKey === undefined) {
-      console.log("Invalid key: ", key)
+      console.log("Invalid key: ", key);
       return [];
     }
     const attachmentCellValue = this._record.getCellValue(
@@ -49,11 +47,11 @@ export class RecordExtractor {
     if (attachmentCellValue === null) {
       return [];
     }
-    const urls = attachmentCellValue.map((attachmentObj) =>
-      this._record.getAttachmentClientUrlFromCellValueUrl(
-        attachmentObj.id,
-        attachmentObj.url
-      )
+    const urls = attachmentCellValue.map((attachmentObj) =>attachmentObj.url
+      // this._record.getAttachmentClientUrlFromCellValueUrl(
+      //   attachmentObj.id,
+      //   attachmentObj.url
+      // )
     );
 
     // if (urls.length >0) {

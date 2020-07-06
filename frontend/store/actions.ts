@@ -7,7 +7,6 @@ import * as auth from "./auth/actions";
 import * as operations from "./operations/actions";
 import * as bundles from "./bundles/actions";
 import * as router from "./router/actions";
-import * as webpage from "./webpage/actions";
 import { ThunkAction } from "redux-thunk";
 import { RootState } from "./index";
 import { Action } from "redux";
@@ -17,7 +16,6 @@ export default {
   operations,
   bundles,
   router,
-  webpage,
 };
 
 // Connect socket connects redux with socket server interface

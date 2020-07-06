@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Media } from "reactstrap";
-import FeatherIcon from "feather-icons-react";
+import { Map, Mail, Phone } from "react-feather";
 import { FooterCopy } from "./FooterCopy";
 import { Footer } from "../../core/footer";
 
@@ -28,10 +28,7 @@ export const FooterBlock: React.FC<FooterBlockProps> = ({ data }) => {
                 <div>
                   <Media>
                     <i>
-                      <FeatherIcon
-                        icon="map-pin"
-                        className="icon-dual-light icons-sm mt-1 mr-2"
-                      />
+                      <Map className="icon-dual-light icons-sm mt-1 mr-2" />
                     </i>
                     <Media body>
                       <p>{data.address}</p>
@@ -39,10 +36,7 @@ export const FooterBlock: React.FC<FooterBlockProps> = ({ data }) => {
                   </Media>
                   <Media>
                     <i>
-                      <FeatherIcon
-                        icon="mail"
-                        className="icon-dual-light icons-sm mt-1 mr-2"
-                      />
+                      <Mail className="icon-dual-light icons-sm mt-1 mr-2" />
                     </i>
                     <Media body>
                       <p>{data.email}</p>
@@ -50,10 +44,7 @@ export const FooterBlock: React.FC<FooterBlockProps> = ({ data }) => {
                   </Media>
                   <Media>
                     <i>
-                      <FeatherIcon
-                        icon="phone"
-                        className="icon-dual-light icons-sm mt-1 mr-2"
-                      />
+                      <Phone className="icon-dual-light icons-sm mt-1 mr-2" />
                     </i>
                     <Media body>
                       <p>{data.phone}</p>

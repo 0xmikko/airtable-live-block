@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { BlockRendererProps } from "./BlockFactory";
-import {
-  BlockTableData,
-  BlockTableUploader,
-  LandingsBlocks,
-} from "../../core/block";
-import { SectionWrapper } from "../Section/SectionWrapper";
+import { LandingsBlocks } from "../../core/block";
 import { BlockInfo } from "../BlockInfo";
 import { getFileFromUrl } from "../../store/utils/uploader";
 import actions from "../../store/actions";
@@ -42,23 +37,24 @@ export const PublishBlockRenderer: React.FC<BlockRendererProps> = ({
 
     console.log(fileFields);
 
-    for(let field of fileFields) {
-        for (let i = 0; i < data.length; i++) {
-            if (data[i][field] === undefined || data[i][field] === "") continue;
-            const file = await getFileFromUrl(data[i][field]);
-            const result = await dispatch(
-                actions.bundles.uploadPicture(bundleName, file)
-            );
-            const publicUrl = result.payload.url;
-            data[i][field] = publicUrl;
-        }
+    for (let field of fileFields) {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i][field] === undefined || data[i][field] === "") continue;
+        const file = await getFileFromUrl(data[i][field]);
+        const result = await dispatch(
+          actions.bundles.uploadPicture(bundleName, file)
+        );
+        // @ts-ignore
+        const publicUrl = result.payload.url;
+        data[i][field] = publicUrl;
+      }
     }
 
     const result = await dispatch(
       actions.bundles.createUpdateDetails(bundleName, {
         id: bundleName,
         index,
-        block: JSON.stringify({block: block, data}),
+        block: JSON.stringify({ block: block, data }),
       })
     );
 

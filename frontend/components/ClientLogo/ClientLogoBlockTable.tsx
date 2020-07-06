@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import { BlockTableData, BlockTableUploader } from "../../core/block";
+import React from "react";
+import { BlockTableData } from "../../core/block";
 import { ClientLogoBlock } from "./ClientLogoBlock";
 import { ClientLogo } from "../../core/clientLogo";
 import { Record as ATRecord } from "@airtable/blocks/dist/types/src/models/models";

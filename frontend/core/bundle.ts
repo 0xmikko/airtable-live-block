@@ -1,5 +1,5 @@
 export interface Bundle {
-    id: string;
-    index: number;
-    block: string;
+  id: string;
+  index: number;
+  block: string;
 }

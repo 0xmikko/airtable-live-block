@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import { Row, Col, Card, CardHeader, CardBody } from "reactstrap";
-import FeatherIcon from "feather-icons-react";
+import React from "react";
+import {  Card, CardHeader, CardBody } from "reactstrap";
 import { Feature } from "../../core/feature";
 
 export interface FeatureBoxProps {

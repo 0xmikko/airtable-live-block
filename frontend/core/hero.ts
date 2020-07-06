@@ -1,4 +1,4 @@
-import { Entry, Schema } from "./schema";
+import { Schema } from "./schema";
 import { FieldType, Record as ATRecord } from "@airtable/blocks/models";
 import { RecordExtractor, RecordMatcher } from "./recordExtractor";
 
@@ -20,25 +20,21 @@ export class Hero {
 
 export const HeroSchema: Schema = {
   title: {
-    type: FieldType.SINGLE_LINE_TEXT,
-    defaultName: "Title",
+    type: FieldType.MULTILINE_TEXT,
     displayName: "Title",
   },
 
   subtitle: {
     type: FieldType.SINGLE_LINE_TEXT,
-    defaultName: "Subtitle",
     displayName: "Subtitle",
   },
 
   desc: {
     type: FieldType.SINGLE_LINE_TEXT,
-    defaultName: "Description",
     displayName: "Description",
   },
   image: {
     type: FieldType.MULTIPLE_ATTACHMENTS,
-    defaultName: "Image",
     displayName: "Background image",
   },
 };

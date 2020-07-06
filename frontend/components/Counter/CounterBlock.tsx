@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "reactstrap";
-import { CounterBox } from "./Counter";
+import CountUp from "react-countup";
 import { Counter } from "../../core/counter";
 
 export interface CounterBlockProps {
@@ -11,20 +11,22 @@ export const CounterBlock: React.FC<CounterBlockProps> = ({ data }) => {
   return (
     <section className="section bg-primary">
       <Container>
-        <Row className="justify-content-center mb-5">
-          <Col lg={7}>
-            <div className="text-center text-white-50">
-              <h4 className="text-white">Best Solutions for your Business</h4>
-              <p>
-                To achieve this, it would be necessary to have uniform grammar,
-                pronunciation and more common that of the individual languages.
-              </p>
-            </div>
-          </Col>
-        </Row>
-
         <Row id="counter">
-          <CounterBox data={data} />
+          {data.map((counter, key) => (
+            <Col xl={3} sm={6} key={key}>
+              <div className="text-center mt-4">
+                <img src={counter.image} />
+                <h2 className="counter-value text-white mt-4">
+                  <CountUp
+                    start={counter.start}
+                    end={counter.end}
+                    duration={10}
+                  />
+                </h2>
+                <p className="font-16 text-white-50">{counter.title}</p>
+              </div>
+            </Col>
+          ))}
         </Row>
       </Container>
     </section>
