@@ -7,6 +7,7 @@ import { combineReducers } from "redux";
 import auth from "./auth/reducer";
 import operations from "./operations/reducer";
 import bundles from "./bundles/reducer";
+import webpage from "./webpage/reducer";
 import router from "./router/reducer";
 
 export default combineReducers({
@@ -14,4 +15,5 @@ export default combineReducers({
   operations,
   bundles,
   router,
+  webpage,
 });

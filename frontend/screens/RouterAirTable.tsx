@@ -11,6 +11,7 @@ import { SchemaEditor } from "./Schema/SchemaEditor";
 import { LandingSchema } from "./Schema/LandingSchema";
 import { BlockType } from "../core/block";
 import {PublishScreen} from "./Publish/PublishScreen";
+import {LandingWebScreen} from "./Landing/LandingWeb";
 
 export const RouterAirTable: React.FC = () => {
   const { url, id, options } = useSelector(
@@ -36,6 +37,10 @@ export const RouterAirTable: React.FC = () => {
 
     case "/publish":
       screen = <PublishScreen />
+      break;
+
+    case "/real":
+      screen = <LandingWebScreen />
       break;
 
   }
