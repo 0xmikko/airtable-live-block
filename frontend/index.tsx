@@ -1,18 +1,12 @@
 import {
-  Box,
-  Button,
-  Heading,
   initializeBlock,
   loadCSSFromURLAsync,
-  TextButton,
 } from "@airtable/blocks/ui";
 import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import { viewport } from "@airtable/blocks";
-import { AppBar } from "./components/AppBar";
-import { SlideDetailsScreen } from "./screens/Slides/SlideDetailsScreen";
 import configureStore from "./store";
-import { Router } from "./screens/Router";
+import { RouterAirTable } from "./screens/RouterAirTable";
 
 // Determines the maximum size of the block in fullscreen mode.
 viewport.addMaxFullscreenSize({
@@ -41,7 +35,7 @@ function App() {
   }, []);
   return (
     <Provider store={store}>
-      <Router />
+      <RouterAirTable />
     </Provider>
   );
 }

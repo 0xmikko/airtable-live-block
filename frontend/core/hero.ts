@@ -42,10 +42,3 @@ export const HeroSchema: Schema = {
     displayName: "Background image",
   },
 };
-
-export const HeroExtractor: Record<string, string> = {
-  image: "Efefefef",
-  subtitle: "rewrwe",
-  title: "erwerwer",
-  desc: "ewrwerer",
-};

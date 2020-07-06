@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Media } from "reactstrap";
+import {Card, CardBody, Col, Media, Row} from "reactstrap";
 import { Testimonial } from "../../core/testimonial";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -11,6 +11,8 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
   data,
 }) => {
   return (
+      <Row>
+        <Col lg={12}>
     <Swiper
       spaceBetween={50}
       slidesPerView={3}
@@ -45,5 +47,7 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
         </SwiperSlide>
       ))}
     </Swiper>
+        </Col>
+      </Row>
   );
 };

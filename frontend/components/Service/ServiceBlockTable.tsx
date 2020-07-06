@@ -1,44 +1,19 @@
 import React from "react";
 import {ServiceBlock} from "./ServiceBlock";
+import {BlockTableData} from "../../core/block";
 import {Service} from "../../core/service";
+import {Record as ATRecord} from "@airtable/blocks/dist/types/src/models/models";
+import {RecordMatcher} from "../../core/recordExtractor";
 
-export interface ServiceBlockTableProps {
-  tableId: string;
-}
 
-export const ServiceBlockTable: React.FC<ServiceBlockTableProps> = ({tableId}) => {
-  const services: Service[] = [
-    {
-      icon: "grid",
-      title: "Bootstrap UI based",
-      desc: "To an English person, it will seem like English as skeptical.",
-    },
-    {
-      icon: "edit",
-      title: "Easy to customize",
-      desc: "If several languages coalesce, the grammar of the language.",
-    },
-    {
-      icon: "headphones",
-      title: "Awesome Support",
-      desc: "The languages only differ in their grammar their pronunciation",
-    },
-    {
-      icon: "layers",
-      title: "Creative Design",
-      desc: "Everyone realizes why a new common would be desirable.",
-    },
-    {
-      icon: "code",
-      title: "Quality Code",
-      desc: "To achieve this, it would be necessary to have uniform.",
-    },
-    {
-      icon: "tablet",
-      title: "Responsive layout",
-      desc: "Their separate existence is a myth. For science, music, etc.",
-    },
-  ];
+// Extracts needed data from records using Record matcher
+export const serviceBlockDataExtractor = (
+    records: ATRecord[],
+    matcher: RecordMatcher
+): Service[] => records.map((r) => new Service(r, matcher));
 
-  return <ServiceBlock data={services} />
+
+// Render AirTable data using data Extractor
+export const ServiceBlockTable: React.FC<BlockTableData> = ({records, matcher}) => {
+  return <ServiceBlock data={serviceBlockDataExtractor(records, matcher)} />
 };

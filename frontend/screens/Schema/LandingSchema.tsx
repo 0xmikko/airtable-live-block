@@ -1,9 +1,8 @@
 import React, {useState} from "react";
-import { NavbarPage } from "../../components/Navbar/Navbar";
 import { Block } from "../../core/block";
-import { LandingBlockFactory } from "../../components/Block/LandingBlockFactory";
-import { useBase, useRecords} from "@airtable/blocks/ui";
+import {Button, useBase, useRecords} from "@airtable/blocks/ui";
 import {LandingSchemaItem} from "../../containers/LandingSchemaItem";
+import {Col, Container, Row} from "reactstrap";
 
 export const LandingSchema: React.FC = () => {
   const base = useBase();
@@ -18,8 +17,17 @@ export const LandingSchema: React.FC = () => {
     .map((record) => new Block(record));
 
   return (
-    <div>
+      <Container>
+        <Row style={{ marginTop: "30px", marginBottom: "20px" }}>
+          <Col lg={12} md={12} xs={12} style={{ textAlign: "center" }}>
+            <h3>Landing structure</h3>
+          </Col>
+        </Row>
+        <Row>
+          <Col lg={12} md={12} sm={12}>
       { blocks.map(block => <LandingSchemaItem data={block}  />)}
-    </div>
+          </Col>
+        </Row>
+      </Container>
   );
 };

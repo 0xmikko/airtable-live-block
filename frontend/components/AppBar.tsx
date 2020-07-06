@@ -9,8 +9,8 @@ export function AppBar() {
   const options = [
     { value: "/", label: "Landing" },
     { value: "/schema", label: "Schema" },
-    { value: "/list", label: "Setting" },
-    { value: "/details", label: "Publish" },
+    // { value: "/settings", label: "Setting" },
+    { value: "/publish", label: "Publish" },
   ];
 
   const dispatch = useDispatch();

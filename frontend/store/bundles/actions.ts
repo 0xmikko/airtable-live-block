@@ -10,7 +10,7 @@ import { endpoint, BUNDLES_PREFIX } from "./";
 import {
   createDataLoaderCreateUpdateDataAction,
   createDataLoaderDetailActions,
-  createDataLoaderListActions
+  createDataLoaderListActions, createDataLoaderUploadFileAction
 } from "../dataloader/actions";
 import {Bundle} from "../../core/bundle";
 
@@ -23,6 +23,7 @@ export const getDetails = createDataLoaderDetailActions(
 
 export const createUpdateDetails = createDataLoaderCreateUpdateDataAction<
   Bundle
->(endpoint, endpoint + ":id/", BUNDLES_PREFIX);
+>(endpoint, endpoint + "block/:id/", BUNDLES_PREFIX);
 
+export const uploadPicture = createDataLoaderUploadFileAction(endpoint + 'upload/:id/', BUNDLES_PREFIX);
 

@@ -17,28 +17,54 @@ export class RecordExtractor {
   constructor(record: ATRecord, matcher: RecordMatcher) {
     this._matcher = matcher;
     this._record = record;
+
+
   }
 
   public getString(key: string): string {
-    return this._record.getCellValueAsString(this._matcher.fieldIds[key]);
+    const intKey = this._matcher.fieldIds[key]
+    if (intKey === undefined) return "Cant find key :" + key;
+    return this._record.getCellValueAsString(intKey);
   }
 
   public getNumber(key: string): number {
-    return this._record.getCellValue(this._matcher.fieldIds[key]) as number;
+    const intKey = this._matcher.fieldIds[key]
+    if (intKey === undefined) {
+      console.log("ACHTUNG", this._record, this._matcher)
+      console.log("Invalid key: ", key)
+      return 0;
+    }
+    return this._record.getCellValue(intKey) as number;
   }
 
   public getAttachmentUrls(key: string): string[] {
-    const attachmentCellValue = this._record.getCellValue(
-      this._matcher.fieldIds[key]
-    ) as AttachmentObj[];
-    if (attachmentCellValue !== null) {
-      return attachmentCellValue.map((attachmentObj) =>
-        this._record.getAttachmentClientUrlFromCellValueUrl(
-          attachmentObj.id,
-          attachmentObj.url
-        )
-      );
+    const intKey = this._matcher.fieldIds[key]
+    if (intKey === undefined) {
+      console.log("Invalid key: ", key)
+      return [];
     }
-    return [];
+    const attachmentCellValue = this._record.getCellValue(
+      intKey
+    ) as AttachmentObj[];
+    if (attachmentCellValue === null) {
+      return [];
+    }
+    const urls = attachmentCellValue.map((attachmentObj) =>
+      this._record.getAttachmentClientUrlFromCellValueUrl(
+        attachmentObj.id,
+        attachmentObj.url
+      )
+    );
+
+    // if (urls.length >0) {
+    //   console.log("TRY TO FETCH", urls[0])
+    //    fetch(urls[0])
+    //        .then( response => response.body.getReader().read())
+    //        .then( body => {
+    //          })
+    //        })
+    // }
+
+    return urls;
   }
 }

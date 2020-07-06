@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Block } from "../core/block";
 import { Button } from "@airtable/blocks/ui";
 import actions from "../store/actions";
+import { BlockInfo } from "../components/BlockInfo";
 
 interface LandingSchemaItemProps {
   data: Block;
@@ -13,17 +14,7 @@ export const LandingSchemaItem: React.FC<LandingSchemaItemProps> = ({
   const dispatch = useDispatch();
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        fontSize: 18,
-        padding: 12,
-        borderBottom: "1px solid #ddd",
-      }}
-    >
-      {data.type}
+    <BlockInfo type={data.type}>
       <Button
         onClick={() => {
           dispatch(
@@ -34,7 +25,9 @@ export const LandingSchemaItem: React.FC<LandingSchemaItemProps> = ({
             })
           );
         }}
-      >Schema</Button>
-    </div>
+      >
+        Schema
+      </Button>
+    </BlockInfo>
   );
 };

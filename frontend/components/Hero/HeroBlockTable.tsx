@@ -1,22 +1,20 @@
 import React from "react";
 import { Hero } from "../../core/hero";
 import { HeroBlock } from "./HeroBlock";
-import { useBase, useGlobalConfig, useRecords } from "@airtable/blocks/ui";
+import { BlockTableData } from "../../core/block";
+import { Record as ATRecord } from "@airtable/blocks/models";
 import { RecordMatcher } from "../../core/recordExtractor";
-import { Block } from "../../core/block";
 
-export const HeroBlockTable: React.FC<Block> = ({ id }) => {
-  // const hero : Hero = {
-  //   image: "https://storage.googleapis.com/airtable-live/bg.jpg",
-  //   subtitle: "Create landings & mobile apps in few minutes",
-  //   title: "AirTable Live - nocode platform for SME",
-  //   desc: "AirTableLive is nocode platform especially deisnged for SME"
-  //
-  // }
+// Extracts needed data from records using Record matcher
+export const heroBlockDataExtractor = (
+  records: ATRecord[],
+  matcher: RecordMatcher
+): Hero[] => records.slice(0, 1).map((r) => new Hero(r, matcher));
 
-
-
-  const hero = records.map((r) => new Hero(r, recordMatcher))[0];
-
-  return <HeroBlock data={hero} />;
+// Render AirTable data using data Extractor
+export const HeroBlockTable: React.FC<BlockTableData> = ({
+  records,
+  matcher,
+}) => {
+  return <HeroBlock data={heroBlockDataExtractor(records, matcher)[0]} />;
 };

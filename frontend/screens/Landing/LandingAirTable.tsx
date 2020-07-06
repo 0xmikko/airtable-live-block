@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import { NavbarPage } from "../../components/Navbar/Navbar";
 import { Block } from "../../core/block";
-import { LandingBlockFactory } from "../../components/Block/LandingBlockFactory";
+import {LandingBlockFactory } from "../../components/BlockFactory/LandingBlockFactoryProps";
 import { useBase, useRecords} from "@airtable/blocks/ui";
 
-export const LandingPage: React.FC = () => {
+export const LandingAirTable: React.FC = () => {
   const base = useBase();
   const table = base.getTableByNameIfExists("Schema");
 
@@ -15,6 +15,9 @@ export const LandingPage: React.FC = () => {
   const blocks = records
     .filter((r) => r !== null)
     .map((record) => new Block(record));
+
+
+
 
   return (
     <div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch} from 'react-redux';
-import { Button, FieldPicker, TablePicker, useBase } from "@airtable/blocks/ui";
+import {Button, FieldPicker, TablePicker, TextButton, useBase} from "@airtable/blocks/ui";
 import { Table, FieldType, Field } from "@airtable/blocks/models";
 import { BlockType, LandingsBlocks } from "../../core/block";
 import { RecordMatcher } from "../../core/recordExtractor";
@@ -92,11 +92,28 @@ export const SchemaEditor: React.FC<SchemaEditorProps> = ({ id, type }) => {
     goToMainSchema();
   };
 
+
+  const createTable = async () => {
+    let tableName = type.toString();
+    let index = 1;
+    while(base.getTableIfExists(tableName) !== null) {
+      tableName = `${type}-${index}`;
+      index++;
+    }
+    const fieldsArray = Object.values(schema).map(e => ({ name: e.displayName, type: e.type}))
+    const newTable = await base.unstable_createTableAsync(tableName, fieldsArray);
+    setTable(newTable);
+
+  }
   return (
     <Container>
       <Row style={{ marginTop: "30px", marginBottom: "20px" }}>
         <Col lg={12} md={12} xs={12} style={{ textAlign: "center" }}>
           <h3>Schema Editor: {type}</h3>
+        </Col>
+      </Row>
+      <Row>
+        <Col lg={10} md={10} xs={10}>
           <TablePicker
             table={table}
             onChange={(newTable) => setTable(newTable)}
@@ -104,6 +121,9 @@ export const SchemaEditor: React.FC<SchemaEditorProps> = ({ id, type }) => {
             width={"100%"}
             style={{ marginTop: "10px" }}
           />
+        </Col>
+        <Col lg={2} md={2} xs={2}>
+          <Button width={'100%'} onClick={createTable}>Create</Button>
         </Col>
       </Row>
 

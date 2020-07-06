@@ -1,76 +1,53 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Box } from "@airtable/blocks/ui";
-import { RootState } from "../store";
+/*
+ * Copyright (c) 2020. Mikhail Lazarev
+ *
+ */
 
-import { SlideDetailsScreen } from "./Slides/SlideDetailsScreen";
-import { SlideListScreen } from "./Slides/SlideListScreen";
-import { AppBar } from "../components/AppBar";
-import { LandingPage } from "./Landing/LandingPage";
-import { SchemaEditor } from "./SchemaEditor/SchemaEditor";
-import { LandingSchema } from "./Landing/LandingSchema";
-import { BlockType } from "../core/block";
+import React, { useEffect } from "react";
+import { Redirect, Route, Switch } from "react-router";
+
+import { useDispatch, useSelector } from "react-redux";
+import actions from "../store/actions";
+import { RootState } from "../store";
+import { STATUS } from "../store/utils/status";
+import {withTracker} from "../components/withTrackerHOC";
 
 export const Router: React.FC = () => {
-  const { url, id, options } = useSelector(
-    (state: RootState) => state.router.route
-  );
+      return (
+          <Switch>
+              <Route
+                  path="/:id"
+                  exact={true}
+                  component={withTracker(LandingWeb)}
+              />
+            <Route
+                path="/login/"
+                exact={true}
+                component={withTracker(LoginScreen)}
+            />
 
-  console.log(url, id);
-  let screen: React.ReactElement;
-  switch (url) {
-    case "/":
-      screen = <LandingPage />;
-      break;
+            <Route
+                path="/login/google/done/"
+                exact={true}
+                render={() => <GoogleAuthDoneScreen method={"login"} />}
+            />
 
-    default:
-    case "/schema":
-      screen = <LandingSchema />;
-      if (id!== undefined && options !== undefined) {
-        const type = (options as { type: BlockType }).type;
-        if (type === undefined) return <>"Internal error"</>;
-        screen = <SchemaEditor id={id} type={type} />;
-      }
-      break;
+            <Route path={"*"} component={withTracker(LoginScreen)} />
+          </Switch>
+      );
+    case STATUS.SUCCESS:
+      return (
+        <>
 
-    case "/list":
-      screen = <SlideListScreen />;
-      break;
-    case "/details":
-      screen = <SlideDetailsScreen id={id} />;
-      return;
+          <Switch>
+            <Route exact path="/" component={WelcomeScreen} />
+            <Route exact path="/story" component={StoryScreen} />
+
+            <Route path={"*"}>
+              <Redirect to={"/story"} />
+            </Route>
+          </Switch>
+        </>
+      );
   }
-
-  return (
-    <>
-      <Box
-        position="absolute"
-        top={"0px"}
-        left={0}
-        right={0}
-        bottom={0}
-        display="flex"
-        flexDirection="column"
-        alignItems="flex-start"
-        justifyContent="space-between"
-        width={"100%"}
-        overflowY={"hidden"}
-      >
-        <AppBar />
-      </Box>
-      <Box
-        position="absolute"
-        top={"50px"}
-        left={0}
-        right={0}
-        bottom={0}
-        display="flex"
-        flexDirection="column"
-        width={"100%"}
-        overflowY={"scroll"}
-      >
-        {screen}
-      </Box>
-    </>
-  );
 };
