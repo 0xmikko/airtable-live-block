@@ -52,7 +52,7 @@ export const NavbarPage: React.FC<NavbarPageProps> = ({ data }) => {
           <NavbarBrand className="logo text-uppercase" href="/">
             <img
                 src={
-                  "https://storage.googleapis.com/airtable-live/logo.png"
+                  "https://storage.googleapis.com/airtable-live/logo_color.png"
                 }
                 alt=""
                 className="logo-light"

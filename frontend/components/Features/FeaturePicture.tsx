@@ -1,30 +1,22 @@
-import React from "react";
-import {  Card, CardHeader, CardBody } from "reactstrap";
+import React  from "react";
+import {Card, CardHeader, CardBody, Col, Row} from "reactstrap";
 import { Feature } from "../../core/feature";
 
 export interface FeatureBoxProps {
   data: Feature;
+  index: number;
 }
 
-export const FeaturePicture: React.FC<FeatureBoxProps> = ({ data }) => {
+export const FeaturePicture: React.FC<FeatureBoxProps> = ({ data, index }) => {
   return (
-    <Card className="border border-light shadow-none mt-5 mt-lg-0">
-      <CardHeader className="border-0 bg-transparent">
-        <div>
-          <i className="mdi mdi-circle text-danger mr-1"></i>
-          <i className="mdi mdi-circle text-warning mr-1 ml-1"></i>
-          <i className="mdi mdi-circle text-success mr-1 ml-1"></i>
-        </div>
-      </CardHeader>
-      <CardBody className="bg-light">
-        <div className="box-shadow">
+      <Col lg={7} sm={8}>
+          <div style={{display: 'flex', flexDirection: 'row', justifyContent: index % 2 === 0 ? 'flex-end' : 'flex-start'}}>
           <img
             src={data.image}
             alt={data.title}
-            className="img-fluid mx-auto d-block"
+            className="img-fluid d-block"
           />
-        </div>
-      </CardBody>
-    </Card>
+          </div>
+      </Col>
   );
 };

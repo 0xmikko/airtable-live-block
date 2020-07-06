@@ -11,28 +11,19 @@ export interface FeaturesBlockProps {
 export const FeatureBlock: React.FC<FeaturesBlockProps> = ({ data }) => {
   return (
     <>
-      {" "}
-      {data.map((f, index) => (
-        <Row>
-          <Col lg={5}>
-            <div>
-              {index % 2 === 0 ? (
-                <FeatureBox data={f} />
-              ) : (
-                <FeaturePicture data={f} />
-              )}
-            </div>
-          </Col>
-
-          <Col lg={5} sm={8} className="ml-lg-auto">
-            {index % 2 !== 0 ? (
-              <FeatureBox data={f} />
-            ) : (
-              <FeaturePicture data={f} />
-            )}
-          </Col>
-        </Row>
-      ))}
+      {data.map((f, index) =>
+        index % 2 === 0 ? (
+          <Row style={{marginBottom: '20px'}}>
+            <FeatureBox data={f} />
+            <FeaturePicture data={f} index={index}/>
+          </Row>
+        ) : (
+            <Row style={{marginBottom: '20px'}}>
+            <FeaturePicture data={f} index={index}/>
+            <FeatureBox data={f} />
+          </Row>
+        )
+      )}
     </>
   );
 };
