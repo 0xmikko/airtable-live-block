@@ -13,7 +13,7 @@
         "@types/reactstrap": "^8.4.3",
         "@types/redux-api-middleware": "^3.2.2",
         "@types/swiper": "^5.4.0",
-        "class-validator": "^0.12.2",
+        "class-validator": "^0.14.0",
         "feather-icons-react": "^0.4.1",
         "jwt-decode": "^2.2.0",
         "react": "^16.9.0",
